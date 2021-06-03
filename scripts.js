@@ -9,9 +9,8 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 app.post("/customers", function (req, res, next) {
-    let data = { firstName: req.body.firstName, lastName: req.body.lastName };
     let sql = "INSERT INTO customer SET?";
-    let query = connection.query(sql, data, (err, results) => {
+    let query = db.query(sql, (err, results) => {
         if (err) throw err;
         res.send(JSON.stringify({ "status": 200, "error": null, "response": results }));
     });
